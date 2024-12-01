@@ -22,8 +22,25 @@ jobs:
           USER: soutrik
           SPACE: gradio_demo
 
+      - name: Add README.md
+        run: |
+          cat <<EOF > README.md
+          ---
+          title: My Gradio App
+          emoji: 🚀
+          colorFrom: blue
+          colorTo: green
+          sdk: gradio
+          sdk_version: "5.7.1"
+          app_file: app.py
+          pinned: false
+          ---
+          EOF
+
       - name: Push to hub
         run: |
+          git add README.md
+          git commit -m "Add README.md"
           git push --force https://$USER:$HF_TOKEN@huggingface.co/spaces/$USER/$SPACE main
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
