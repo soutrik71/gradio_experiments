@@ -37,6 +37,11 @@ jobs:
           ---
           EOF
 
+      - name: Configure Git identity
+        run: |
+          git config user.name "soutrik"
+          git config user.email "soutrik.chowdhury@ab-inbev.com"
+
       - name: Push to hub
         run: |
           git add README.md
